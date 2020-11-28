@@ -4,14 +4,12 @@ class PurchasesController < ApplicationController
     @purchase_delivery = PurchaseDelivery.new
   end
 
-  def new
-  end
-
   def create
+    @item = Item.find(params[:item_id])
     @purchase_delivery = PurchaseDelivery.new(delivery_params)
       if @purchase_delivery.valid?
         @purchase_delivery.save
-        redirect_to action: :index
+        redirect_to root_path
       else
         render action: :index
       end
