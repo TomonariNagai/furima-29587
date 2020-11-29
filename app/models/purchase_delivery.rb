@@ -8,6 +8,7 @@ class PurchaseDelivery
     validates :municipality
     validates :house_num
     validates :phone_num, format: {with: /\A[0-9]{,11}\z/, message: "Input correctly"}
+    validates :token
   end
   validates :prefecture_id, numericality: {other_than: 1, message: "Select"}
 
