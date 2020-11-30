@@ -3,9 +3,8 @@ class PurchasesController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    user_validate
+    item_validate
     @purchase_delivery = PurchaseDelivery.new
   end
 
@@ -34,5 +33,17 @@ class PurchasesController < ApplicationController
       card: delivery_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def user_validate
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def item_validate
+    if @item.purchase.present?
+      redirect_to root_path
+    end
   end
 end
