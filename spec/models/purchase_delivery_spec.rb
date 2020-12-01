@@ -31,7 +31,7 @@ RSpec.describe PurchaseDelivery, type: :model do
       end
 
       it "postal_codeはハイフンを含まないと保存できない" do
-        @purchase_delivery.postal_code = '1234567'
+        @purchase_delivery.postal_code = "1234567"
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("Postal code Input correctly")
       end
@@ -61,13 +61,13 @@ RSpec.describe PurchaseDelivery, type: :model do
       end
 
       it "phone_numが12桁以上だと保存できない" do
-        @purchase_delivery.phone_num = 123456789012
+        @purchase_delivery.phone_num = "123456789012"
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("Phone num Input correctly")
       end
 
       it "phone_numがハイフンを含むと登録できない" do
-        @purchase_delivery.phone_num = 123-4567-89
+        @purchase_delivery.phone_num = "123-4567-89"
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("Phone num Input correctly")
       end
